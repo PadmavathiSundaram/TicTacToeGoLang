@@ -1,0 +1,124 @@
+?   	github.com/tictactoe/cmd/game	[no test files]
+=== RUN   TestIsGameOver
+=== RUN   TestIsGameOver/New_Game
+=== RUN   TestIsGameOver/winner_Y_found
+[0 1 2]
+Player Y is the winner.Game Over
+Total time taken by isThereAWinner loop is 56957 nano seconds 
+=== RUN   TestIsGameOver/winner_X_found
+Player X is the winner.Game Over
+Total time taken by isThereAWinner loop is 21355 nano seconds 
+=== RUN   TestIsGameOver/Draw_case
+Total time taken by isThereAWinner loop is 31049 nano seconds 
+Its a Draw..Game Over
+--- PASS: TestIsGameOver (0.00s)
+    --- PASS: TestIsGameOver/New_Game (0.00s)
+    --- PASS: TestIsGameOver/winner_Y_found (0.00s)
+    --- PASS: TestIsGameOver/winner_X_found (0.00s)
+    --- PASS: TestIsGameOver/Draw_case (0.00s)
+=== RUN   TestNextTurn
+=== RUN   TestNextTurn/Player_X_turn
+Player X's turn(0)		X		(2)		
+	
+(3)		(4)		(5)		
+	
+(6)		(7)		(8)		
+	
+=== RUN   TestNextTurn/Player_Y_turn
+Player Y's turn(0)		X		Y		
+	
+(3)		(4)		(5)		
+	
+(6)		(7)		(8)		
+	
+=== RUN   TestNextTurn/Player_X_turn_-_invalid_index
+Player X's turnCell 1 Already taken by X
+Player X's turnInvalid index 9 
+Player X's turn(0)		X		Y		
+	
+(3)		(4)		X		
+	
+(6)		(7)		(8)		
+	
+=== RUN   TestNextTurn/Invalid_data_turn
+Player Y's turnInvalid Input.Please enter a valid number between 0-9
+Player Y's turn(0)		(1)		(2)		
+	
+(3)		(4)		(5)		
+	
+(6)		Y		(8)		
+	
+--- PASS: TestNextTurn (0.00s)
+    --- PASS: TestNextTurn/Player_X_turn (0.00s)
+    --- PASS: TestNextTurn/Player_Y_turn (0.00s)
+    --- PASS: TestNextTurn/Player_X_turn_-_invalid_index (0.00s)
+    --- PASS: TestNextTurn/Invalid_data_turn (0.00s)
+=== RUN   TestPlay
+(0)		(1)		(2)		
+	
+(3)		(4)		(5)		
+	
+(6)		(7)		(8)		
+	
+Player X's turn(0)		X		(2)		
+	
+(3)		(4)		(5)		
+	
+(6)		(7)		(8)		
+	
+Total time taken by isThereAWinner loop is 24647 nano seconds 
+Player Y's turn(0)		X		Y		
+	
+(3)		(4)		(5)		
+	
+(6)		(7)		(8)		
+	
+Total time taken by isThereAWinner loop is 25442 nano seconds 
+Player X's turnCell 1 Already taken by X
+Player X's turnInvalid index 9 
+Player X's turn(0)		X		Y		
+	
+(3)		(4)		X		
+	
+(6)		(7)		(8)		
+	
+Total time taken by isThereAWinner loop is 25954 nano seconds 
+Player Y's turnInvalid Input.Please enter a valid number between 0-9
+Player Y's turn(0)		X		Y		
+	
+(3)		(4)		X		
+	
+(6)		Y		(8)		
+	
+Total time taken by isThereAWinner loop is 27001 nano seconds 
+Player X's turn(0)		X		Y		
+	
+(3)		(4)		X		
+	
+(6)		Y		X		
+	
+Total time taken by isThereAWinner loop is 28202 nano seconds 
+Its a Draw..Game Over
+--- PASS: TestPlay (0.00s)
+=== RUN   Test
+=== RUN   Test/EOF_scenario
+Select the index you want to occupy: 
+=== RUN   Test/Valid_index
+Select the index you want to occupy: 
+=== RUN   Test/Valid_index#01
+Select the index you want to occupy: 
+--- PASS: Test (0.00s)
+    --- PASS: Test/EOF_scenario (0.00s)
+    --- PASS: Test/Valid_index (0.00s)
+    --- PASS: Test/Valid_index#01 (0.00s)
+=== RUN   TestConatins
+=== RUN   TestConatins/Match_Found_-_[0_1_2]_contains_2_:_true
+=== RUN   TestConatins/Match_not_found_-_[3_4_5]_contains_2_:_false
+=== RUN   TestConatins/Invalid_data_-_[]_contains_0_:_false
+--- PASS: TestConatins (0.00s)
+    --- PASS: TestConatins/Match_Found_-_[0_1_2]_contains_2_:_true (0.00s)
+    --- PASS: TestConatins/Match_not_found_-_[3_4_5]_contains_2_:_false (0.00s)
+    --- PASS: TestConatins/Invalid_data_-_[]_contains_0_:_false (0.00s)
+PASS
+coverage: 100.0% of statements
+ok  	github.com/tictactoe/pkg/board	1.024s	coverage: 100.0% of statements
