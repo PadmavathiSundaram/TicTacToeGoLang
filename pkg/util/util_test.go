@@ -1,7 +1,8 @@
-package board
+package util
 
 import (
 	"fmt"
+
 	"gotest.tools/assert"
 	"testing"
 )

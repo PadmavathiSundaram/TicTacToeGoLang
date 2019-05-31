@@ -8,7 +8,7 @@ Player Y is the winner.Game Over
 (3)|(4)|(5)
 ───┼───┼───
 (6)|(7)|(8)
-Total time taken by isThereAWinner loop is 148662 nano seconds 
+Total time taken by isThereAWinner loop is 172070 nano seconds 
 === RUN   TestIsGameOver/winner_X_found
 Player X is the winner.Game Over
  ̶X̶ | ̶X̶ | ̶X̶ 
@@ -16,9 +16,9 @@ Player X is the winner.Game Over
 (3)|(4)|(5)
 ───┼───┼───
 (6)|(7)|(8)
-Total time taken by isThereAWinner loop is 117958 nano seconds 
+Total time taken by isThereAWinner loop is 154338 nano seconds 
 === RUN   TestIsGameOver/Draw_case
-Total time taken by isThereAWinner loop is 39281 nano seconds 
+Total time taken by isThereAWinner loop is 35107 nano seconds 
 Its a Draw..Game Over
 --- PASS: TestIsGameOver (0.00s)
     --- PASS: TestIsGameOver/New_Game (0.00s)
@@ -27,89 +27,53 @@ Its a Draw..Game Over
     --- PASS: TestIsGameOver/Draw_case (0.00s)
 === RUN   TestNextTurn
 === RUN   TestNextTurn/Player_X_turn
-Player X's turn(0)| X |(2)
-───┼───┼───
-(3)|(4)|(5)
-───┼───┼───
-(6)|(7)|(8)
-=== RUN   TestNextTurn/Player_Y_turn
-Player Y's turn(0)| X | Y 
-───┼───┼───
-(3)|(4)|(5)
-───┼───┼───
-(6)|(7)|(8)
-=== RUN   TestNextTurn/Player_X_turn_-_invalid_index
+Player X's turn=== RUN   TestNextTurn/Player_Y_turn
+Player Y's turn=== RUN   TestNextTurn/Player_X_turn_-_invalid_index
 Player X's turnCell 1 Already taken by X
 Player X's turnInvalid index 9 
-Player X's turn(0)| X | Y 
-───┼───┼───
-(3)|(4)| X 
-───┼───┼───
-(6)|(7)|(8)
-=== RUN   TestNextTurn/Invalid_data_turn
+Player X's turn=== RUN   TestNextTurn/Invalid_data_turn
 Player Y's turnInvalid Input.Please enter a valid number between 0-9
-Player Y's turn(0)|(1)|(2)
-───┼───┼───
-(3)|(4)|(5)
-───┼───┼───
-(6)| Y |(8)
---- PASS: TestNextTurn (0.00s)
+Player Y's turn--- PASS: TestNextTurn (0.00s)
     --- PASS: TestNextTurn/Player_X_turn (0.00s)
     --- PASS: TestNextTurn/Player_Y_turn (0.00s)
     --- PASS: TestNextTurn/Player_X_turn_-_invalid_index (0.00s)
     --- PASS: TestNextTurn/Invalid_data_turn (0.00s)
 === RUN   TestPlay
-(0)|(1)|(2)
-───┼───┼───
-(3)|(4)|(5)
-───┼───┼───
-(6)|(7)|(8)
-Player X's turn(0)| X |(2)
-───┼───┼───
-(3)|(4)|(5)
-───┼───┼───
-(6)|(7)|(8)
-Total time taken by isThereAWinner loop is 34948 nano seconds 
-Player Y's turn(0)| X | Y 
-───┼───┼───
-(3)|(4)|(5)
-───┼───┼───
-(6)|(7)|(8)
-Total time taken by isThereAWinner loop is 32032 nano seconds 
+Player X's turnTotal time taken by isThereAWinner loop is 30904 nano seconds 
+Player Y's turnTotal time taken by isThereAWinner loop is 26703 nano seconds 
 Player X's turnCell 1 Already taken by X
 Player X's turnInvalid index 9 
-Player X's turn(0)| X | Y 
-───┼───┼───
-(3)|(4)| X 
-───┼───┼───
-(6)|(7)|(8)
-Total time taken by isThereAWinner loop is 32352 nano seconds 
+Player X's turnTotal time taken by isThereAWinner loop is 28357 nano seconds 
 Player Y's turnInvalid Input.Please enter a valid number between 0-9
-Player Y's turn(0)| X | Y 
-───┼───┼───
-(3)|(4)| X 
-───┼───┼───
-(6)| Y |(8)
-Total time taken by isThereAWinner loop is 34183 nano seconds 
-Player X's turn(0)| X | Y 
-───┼───┼───
-(3)|(4)| X 
-───┼───┼───
-(6)| Y | X 
-Total time taken by isThereAWinner loop is 40123 nano seconds 
+Player Y's turnTotal time taken by isThereAWinner loop is 28713 nano seconds 
+Player X's turnTotal time taken by isThereAWinner loop is 30213 nano seconds 
 Its a Draw..Game Over
 --- PASS: TestPlay (0.00s)
-=== RUN   Test
-=== RUN   Test/EOF_scenario
+=== RUN   TestWrapperToDisplayExecutionTime
+Total time taken by mockProcess loop is 259 nano seconds 
+--- PASS: TestWrapperToDisplayExecutionTime (0.00s)
+PASS
+coverage: 100.0% of statements
+ok  	github.com/tictactoe/pkg/board	1.030s	coverage: 100.0% of statements
+=== RUN   TestFetchInput
+=== RUN   TestFetchInput/EOF_scenario
 Select the index you want to occupy: 
-=== RUN   Test/Valid_index
+=== RUN   TestFetchInput/Valid_index
 Select the index you want to occupy: 
-=== RUN   Test/Valid_index#01
+=== RUN   TestFetchInput/Valid_index#01
 Select the index you want to occupy: 
---- PASS: Test (0.00s)
-    --- PASS: Test/EOF_scenario (0.00s)
-    --- PASS: Test/Valid_index (0.00s)
-    --- PASS: Test/Valid_index#01 (0.00s)
+--- PASS: TestFetchInput (0.00s)
+    --- PASS: TestFetchInput/EOF_scenario (0.00s)
+    --- PASS: TestFetchInput/Valid_index (0.00s)
+    --- PASS: TestFetchInput/Valid_index#01 (0.00s)
+=== RUN   TestDisplayWinner
+ ̶̶ | ̶̶ | ̶̶ 
+───┼───┼───
+(3)
+--- PASS: TestDisplayWinner (0.00s)
+PASS
+coverage: 100.0% of statements
+ok  	github.com/tictactoe/pkg/screen	1.026s	coverage: 100.0% of statements
 === RUN   TestConatins
 === RUN   TestConatins/Match_Found_-_[0_1_2]_contains_2_:_true
 === RUN   TestConatins/Match_not_found_-_[3_4_5]_contains_2_:_false
@@ -120,4 +84,4 @@ Select the index you want to occupy:
     --- PASS: TestConatins/Invalid_data_-_[]_contains_0_:_false (0.00s)
 PASS
 coverage: 100.0% of statements
-ok  	github.com/tictactoe/pkg/board	1.027s	coverage: 100.0% of statements
+ok  	github.com/tictactoe/pkg/util	1.025s	coverage: 100.0% of statements

@@ -2,8 +2,10 @@ package board
 
 import (
 	"fmt"
-	"gotest.tools/assert"
 	"testing"
+
+	"github.com/tictactoe/pkg/util"
+	"gotest.tools/assert"
 )
 
 func TestIsGameOver(t *testing.T) {
@@ -12,16 +14,16 @@ func TestIsGameOver(t *testing.T) {
 	b.Cells[4] = X
 	b.Cells[3] = X
 	b.Cells[8] = X
-	b.enabledCells = append(b.enabledCells, 0, 1, 2, 3, 4, 5, 6, 7, 8)
+	b.EnabledCells = append(b.EnabledCells, 0, 1, 2, 3, 4, 5, 6, 7, 8)
 
 	winningYBoard := NewBoard()
-	winningYBoard.enabledCells = append(winningYBoard.enabledCells, 0, 1, 2, 3, 4, 5, 6, 7, 8)
+	winningYBoard.EnabledCells = append(winningYBoard.EnabledCells, 0, 1, 2, 3, 4, 5, 6, 7, 8)
 
 	winningXBoard := NewBoard()
 	winningXBoard.Cells[0] = X
 	winningXBoard.Cells[1] = X
 	winningXBoard.Cells[2] = X
-	winningXBoard.enabledCells = append(winningXBoard.enabledCells, 0, 1, 2, 3, 4, 5, 6, 7, 8)
+	winningXBoard.EnabledCells = append(winningXBoard.EnabledCells, 0, 1, 2, 3, 4, 5, 6, 7, 8)
 
 	tests := []struct {
 		name           string
@@ -46,7 +48,13 @@ type mockUI struct {
 	index int
 }
 
-func (m *mockUI) fetchInput() (int, error) {
+func (m *mockUI) Display() {
+}
+
+func (m *mockUI) DisplayWinner(winningCells []int) {
+}
+
+func (m *mockUI) FetchInput() (int, error) {
 	if m.index == 5 {
 		m.index++
 		return 0, fmt.Errorf("Bad data")
@@ -87,17 +95,27 @@ func TestNextTurn(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			result := nextTurn(test.board, test.isPlayerX)
-			assert.Assert(t, Contains(result.enabledCells, test.expectedResult), "isGameOver returned unexpected result")
+			assert.Assert(t, util.Contains(result.EnabledCells, test.expectedResult), "isGameOver returned unexpected result")
 		})
 	}
 }
 
 func TestPlay(t *testing.T) {
 	b := NewBoard()
-	b.enabledCells = append(b.enabledCells, 0, 2, 3, 4)
+	b.EnabledCells = append(b.EnabledCells, 0,
+		2, 3, 4)
 	b.UserInterface = &mockUI{index: 0}
 
 	Play(b)
-	assert.Assert(t, Contains(b.enabledCells, 1), "isGameOver returned unexpected result")
+	assert.Assert(t, util.Contains(b.EnabledCells, 1), "isGameOver returned unexpected result")
+}
+
+func TestWrapperToDisplayExecutionTime(t *testing.T) {
+
+	mockProcess := func(b *board) bool {
+		return true
+	}
+	winner := WrapperToDisplayExecutionTime(nil, "mockProcess", mockProcess)
+	assert.Equal(t, winner, true)
 
 }

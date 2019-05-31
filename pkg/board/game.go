@@ -2,6 +2,9 @@ package board
 
 import (
 	"fmt"
+
+	"github.com/tictactoe/pkg/util"
+	"time"
 )
 
 const winningText = "Player %s is the winner.Game Over\n"
@@ -19,7 +22,7 @@ var winningList = [][]int{{0, 1, 2},
 	{2, 4, 6}}
 
 func Play(b *board) {
-	b.Display()
+	b.UserInterface.Display()
 	player1 := true
 
 	for !isGameOver(b) {
@@ -30,12 +33,12 @@ func Play(b *board) {
 
 func isGameOver(b *board) bool {
 
-	if len(b.enabledCells) >= 5 {
+	if len(b.EnabledCells) >= 5 {
 		if winner := WrapperToDisplayExecutionTime(b, "isThereAWinner", isThereAWinner); winner {
 			return true
 		}
 
-		if len(b.enabledCells) >= 9 {
+		if len(b.EnabledCells) >= 9 {
 			fmt.Println(drawText)
 			return true
 		}
@@ -52,7 +55,7 @@ func isThereAWinner(b *board) bool {
 		winningCells = winningCells[0:0]
 		for row := range winningList[k] {
 			cellData := b.Cells[winningList[k][row]]
-			if Contains(b.enabledCells, winningList[k][row]) {
+			if util.Contains(b.EnabledCells, winningList[k][row]) {
 				if cellData == X {
 					matchXCount++
 				} else {
@@ -63,13 +66,13 @@ func isThereAWinner(b *board) bool {
 
 			if matchXCount == 3 {
 				fmt.Printf(winningText, X)
-				b.DisplayWinner(winningCells)
+				b.UserInterface.DisplayWinner(winningCells)
 				return true
 			}
 
 			if matchYCount == 3 {
 				fmt.Printf(winningText, Y)
-				b.DisplayWinner(winningCells)
+				b.UserInterface.DisplayWinner(winningCells)
 				return true
 			}
 		}
@@ -87,7 +90,7 @@ func nextTurn(b *board, flag bool) *board {
 
 	fmt.Printf("Player %s's turn", player)
 
-	index, err := b.UserInterface.fetchInput()
+	index, err := b.UserInterface.FetchInput()
 	if err != nil {
 		fmt.Println("Invalid Input.Please enter a valid number between 0-9")
 		return nextTurn(b, flag)
@@ -98,6 +101,15 @@ func nextTurn(b *board, flag bool) *board {
 	}
 
 	b = b.Click(index, player)
-	b.Display()
+	b.UserInterface.Display()
 	return b
+}
+
+func WrapperToDisplayExecutionTime(b *board, processName string, process func(b *board) bool) bool {
+	startTime := time.Now()
+	winner := process(b)
+	endTime := time.Now()
+	diff := endTime.Sub(startTime)
+	fmt.Printf("Total time taken by %s loop is %v nano seconds \n", processName, diff.Nanoseconds())
+	return winner
 }
