@@ -7,6 +7,7 @@ import (
 )
 
 const boardStyle = "\n───┼───┼───"
+const strikeThrough = "\u0336"
 
 type board struct {
 	Cells         map[int]string
@@ -23,6 +24,17 @@ func NewBoard() *board {
 
 	b := board{Cells: indexedCells, UserInterface: NewConsoleInput()}
 	return &b
+}
+
+func (b *board) DisplayWinner(winningCells []int) {
+	for _, index := range winningCells {
+		var buf bytes.Buffer
+		fmt.Fprintf(&buf, strikeThrough)
+		fmt.Fprintf(&buf, b.Cells[index])
+		fmt.Fprintf(&buf, strikeThrough)
+		b.Cells[index] = buf.String()
+	}
+	b.Display()
 }
 
 func (b *board) Display() {

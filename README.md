@@ -12,6 +12,14 @@ The concept of interface is used to achieve this test coverage.
 The project can be cloned into any wprkspace as it uses go modules.
 Just clone the project and use the make command to get started.
 
+// Setting up the terminal to support go mod
+export GOPath=$HOME/go
+export GO111MODULE=on
+
+Installing Golint:
+---------
+GO111MODULE=on go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.16.0
+
 #To run:
 ----------
 

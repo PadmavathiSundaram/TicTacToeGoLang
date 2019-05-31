@@ -1,6 +1,7 @@
 GOCMD=go
 GOBUILD=$(GOCMD) build
 GOTEST=$(GOCMD) test
+GOPath=$(HOME)/go
 CMD_DIR=$(shell pwd)/cmd/game
 
 local: all run
@@ -14,7 +15,7 @@ test:
 	go test -mod=vendor --race -v -covermode=atomic -coverprofile=reports/coverage.out ./... >> reports/test_Result
 	go tool cover -html=reports/coverage.out
 lint:
-	golangci-lint  run
+	$(GOPath)/bin/golangci-lint  run
 run:
 	cd ${CMD_DIR}; \
 	go run ./...

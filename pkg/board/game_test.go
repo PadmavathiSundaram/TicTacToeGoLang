@@ -14,7 +14,7 @@ func TestIsGameOver(t *testing.T) {
 	b.Cells[8] = X
 	b.enabledCells = append(b.enabledCells, 0, 1, 2, 3, 4, 5, 6, 7, 8)
 
-	winningYBoard := new(board)
+	winningYBoard := NewBoard()
 	winningYBoard.enabledCells = append(winningYBoard.enabledCells, 0, 1, 2, 3, 4, 5, 6, 7, 8)
 
 	winningXBoard := NewBoard()

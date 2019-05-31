@@ -22,7 +22,7 @@ func Play(b *board) {
 	b.Display()
 	player1 := true
 
-	for !isGameOver(b){
+	for !isGameOver(b) {
 		nextTurn(b, player1)
 		player1 = !player1
 	}
@@ -31,7 +31,7 @@ func Play(b *board) {
 func isGameOver(b *board) bool {
 
 	if len(b.enabledCells) >= 5 {
-		if winner := TimeWrap(b, "isThereAWinner", isThereAWinner); winner {
+		if winner := WrapperToDisplayExecutionTime(b, "isThereAWinner", isThereAWinner); winner {
 			return true
 		}
 
@@ -44,28 +44,34 @@ func isGameOver(b *board) bool {
 }
 
 func isThereAWinner(b *board) bool {
+	winningCells := make([]int, 3)
 	for k := range winningList {
 		matchYCount := 0
 		matchXCount := 0
+
+		winningCells = winningCells[0:0]
 		for row := range winningList[k] {
+			cellData := b.Cells[winningList[k][row]]
 			if Contains(b.enabledCells, winningList[k][row]) {
-				if b.Cells[winningList[k][row]] == X {
+				if cellData == X {
 					matchXCount++
 				} else {
 					matchYCount++
 				}
+				winningCells = append(winningCells, winningList[k][row])
 			}
-		}
 
-		if matchXCount == 3 {
-			fmt.Printf(winningText, X)
-			return true
-		}
+			if matchXCount == 3 {
+				fmt.Printf(winningText, X)
+				b.DisplayWinner(winningCells)
+				return true
+			}
 
-		if matchYCount == 3 {
-			fmt.Println(winningList[k])
-			fmt.Printf(winningText, Y)
-			return true
+			if matchYCount == 3 {
+				fmt.Printf(winningText, Y)
+				b.DisplayWinner(winningCells)
+				return true
+			}
 		}
 	}
 

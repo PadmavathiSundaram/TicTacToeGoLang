@@ -14,7 +14,7 @@ func Contains(s []int, e int) bool {
 	return false
 }
 
-func TimeWrap(b *board, processName string, process func(b *board) bool) bool {
+func WrapperToDisplayExecutionTime(b *board, processName string, process func(b *board) bool) bool {
 	startTime := time.Now()
 	winner := process(b)
 	endTime := time.Now()
