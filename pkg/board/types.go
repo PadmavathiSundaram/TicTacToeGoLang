@@ -1,9 +1,12 @@
 package board
 
 import (
+	"bytes"
 	"fmt"
 	"sort"
 )
+
+const boardStyle = "\n───┼───┼───"
 
 type board struct {
 	Cells         map[int]string
@@ -31,19 +34,24 @@ func (b *board) Display() {
 	}
 	sort.Ints(keys)
 
+	var buf bytes.Buffer
 	// To perform the opertion you want
 	for _, k := range keys {
 		i := b.Cells[k]
 		if i == "" {
-			fmt.Printf("(%d)", k)
+			fmt.Fprintf(&buf, "(%d)|", k)
 		} else {
-			fmt.Printf("%s", i)
+			fmt.Fprintf(&buf, " %s |", i)
 		}
-		fmt.Print("\t\t")
-		if k == 2 || k == 5 || k == 8 {
-			fmt.Println("\n\t")
+		if k == 2 || k == 5 {
+			buf.Truncate(buf.Len() - 1)
+			fmt.Fprintln(&buf, boardStyle)
 		}
 	}
+	buf.Truncate(buf.Len() - 1)
+
+	fmt.Println(buf.String())
+
 }
 
 func (b *board) ValidateIndex(x int) bool {
