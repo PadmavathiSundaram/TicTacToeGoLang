@@ -21,10 +21,8 @@ var winningList = [][]int{{0, 1, 2},
 func Play(b *board) {
 	b.Display()
 	player1 := true
-	for {
-		if isGameOver(b) {
-			return
-		}
+
+	for !isGameOver(b){
 		nextTurn(b, player1)
 		player1 = !player1
 	}
